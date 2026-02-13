@@ -4,7 +4,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
-build/
+/build/
 develop-eggs/
 dist/
 downloads/
@@ -20,6 +20,7 @@ wheels/
 .installed.cfg
 *.egg
 
+.claude/
 # 虚拟环境
 venv/
 env/
