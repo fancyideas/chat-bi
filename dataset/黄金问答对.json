@@ -1,0 +1,129 @@
+[
+  {
+    "原问题": "根据航班号、航班日期查询航班信息",
+    "修饰问题": "我想查询航班号CA1519在2025年6月1日的详细信息",
+    "分类": "航班数据",
+    
+    "sql": "SELECT t.ID, t.PID, t.OPT_AC_AIRLINE, t.OPT_FP_FLTNO, t.OPT_FP_DEP_AP, t.OPT_FP_ARR_AP, t.OPT_FP_EXECUTE_DATE, t.OPT_FP_SOBT, t.OPT_FP_SIBT, t.OPT_FS_CTOT, t.OPT_FS_ELDT, t.OPT_FS_ATOT, t.OPT_FS_ALDT, air.OPT_FL_AIRLINE_NAMECHN, arr.OPT_FGS_STATION_NAMECHN, arr_city.OPT_FS_CITY_NAMECHN, dep.OPT_FGS_STATION_NAMECHN, dep_city.OPT_FS_CITY_NAMECHN, t.OPT_FS_STATUS AS \"stateCn\", t.SCT_STC_TERMINAL AS \"terminal\", t.OPT_FP_FLIN AS \"optFpFlin\" FROM DW_OPT_FLIGHT t LEFT JOIN DW_STATIC_RESOURCES_AIRLINE air ON t.OPT_AC_AIRLINE = air.OPT_FL_AIRLINE LEFT JOIN DW_STATIC_RESOURCES_STATION dep ON t.OPT_FP_DEP_AP = dep.OPT_FGS_STATION LEFT JOIN DW_STATIC_RESOURCES_STATION arr ON t.OPT_FP_ARR_AP = arr.OPT_FGS_STATION LEFT JOIN DW_STATIC_RESOURCES_CITY dep_city ON dep.OPT_FL_CITY = dep_city.OPT_FL_CITY LEFT JOIN DW_STATIC_RESOURCES_CITY arr_city ON arr.OPT_FL_CITY = arr_city.OPT_FL_CITY WHERE t.OPT_FP_FLTNO = 'CA1519' AND t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d')"
+  },
+  {
+    "原问题": "根据起飞机场、到达机场、航班日期查询航班信息",
+    "修饰问题": "请帮我查找2025年6月1日从上海浦东机场出发到达北京首都机场的所有航班",
+    "分类": "航班数据",
+    "sql": "SELECT t.ID, t.PID, t.OPT_AC_AIRLINE, t.OPT_FP_FLTNO, t.OPT_FP_DEP_AP, t.OPT_FP_ARR_AP, t.OPT_FP_EXECUTE_DATE, t.OPT_FP_SOBT, t.OPT_FP_SIBT, t.OPT_FS_CTOT, t.OPT_FS_ELDT, t.OPT_FS_ATOT, t.OPT_FS_ALDT, air.OPT_FL_AIRLINE_NAMECHN, arr.OPT_FGS_STATION_NAMECHN, arr_city.OPT_FS_CITY_NAMECHN, dep.OPT_FGS_STATION_NAMECHN, dep_city.OPT_FS_CITY_NAMECHN, t.OPT_FS_STATUS AS \"stateCn\", t.SCT_STC_TERMINAL AS \"terminal\", t.OPT_FP_FLIN AS \"optFpFlin\" FROM DW_OPT_FLIGHT t LEFT JOIN DW_STATIC_RESOURCES_AIRLINE air ON t.OPT_AC_AIRLINE = air.OPT_FL_AIRLINE LEFT JOIN DW_STATIC_RESOURCES_STATION dep ON t.OPT_FP_DEP_AP = dep.OPT_FGS_STATION LEFT JOIN DW_STATIC_RESOURCES_STATION arr ON t.OPT_FP_ARR_AP = arr.OPT_FGS_STATION LEFT JOIN DW_STATIC_RESOURCES_CITY dep_city ON dep.OPT_FL_CITY = dep_city.OPT_FL_CITY LEFT JOIN DW_STATIC_RESOURCES_CITY arr_city ON arr.OPT_FL_CITY = arr_city.OPT_FL_CITY WHERE t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d') AND t.OPT_FP_DEP_AP = 'SHA' AND t.OPT_FP_ARR_AP = 'PEK'"
+  },
+  {
+    "原问题": "根据航班日期查询首都机场离港航班列表",
+    "修饰问题": "我要查看2025年6月1日从北京首都机场出发的所有离港航班",
+    "分类": "航班数据",
+    "sql": "SELECT t.ID, t.PID, t.OPT_AC_AIRLINE, t.OPT_FP_FLTNO, t.OPT_FP_DEP_AP, t.OPT_FP_ARR_AP, t.OPT_FP_EXECUTE_DATE, t.OPT_FP_SOBT, t.OPT_FP_SIBT, t.OPT_FS_CTOT, t.OPT_FS_ELDT, t.OPT_FS_ATOT, t.OPT_FS_ALDT, air.OPT_FL_AIRLINE_NAMECHN, arr.OPT_FGS_STATION_NAMECHN, arr_city.OPT_FS_CITY_NAMECHN, dep.OPT_FGS_STATION_NAMECHN, dep_city.OPT_FS_CITY_NAMECHN, t.OPT_FS_STATUS AS \"stateCn\", t.SCT_STC_TERMINAL AS \"terminal\", t.OPT_FP_FLIN AS \"optFpFlin\" FROM DW_OPT_FLIGHT t LEFT JOIN DW_STATIC_RESOURCES_AIRLINE air ON t.OPT_AC_AIRLINE = air.OPT_FL_AIRLINE LEFT JOIN DW_STATIC_RESOURCES_STATION dep ON t.OPT_FP_DEP_AP = dep.OPT_FGS_STATION LEFT JOIN DW_STATIC_RESOURCES_STATION arr ON t.OPT_FP_ARR_AP = arr.OPT_FGS_STATION LEFT JOIN DW_STATIC_RESOURCES_CITY dep_city ON dep.OPT_FL_CITY = dep_city.OPT_FL_CITY LEFT JOIN DW_STATIC_RESOURCES_CITY arr_city ON arr.OPT_FL_CITY = arr_city.OPT_FL_CITY WHERE t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d') AND t.OPT_FP_MVIN = 'D'"
+  },
+  {
+    "原问题": "查询航班登机门信息",
+    "修饰问题": "请问CA3576航班在2025年6月1日的登机门是哪个?",
+    "分类": "航班数据",
+    "sql": "SELECT a.OPT_FS_BOARDING_GATE FROM DW_OPT_FLIGHT t LEFT JOIN DW_OPT_FLIGHT_GTDT a ON t.PID = a.PID AND t.OPT_FP_FLIN = a.OPT_FS_GTYP WHERE t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d') AND t.OPT_FP_FLTNO = 'CA3576'"
+  },
+  {
+    "原问题": "查询航班值机柜台信息",
+    "修饰问题": "帮我查一下CA3576航班在2025年6月1日的值机柜台在哪里",
+    "分类": "航班数据",
+    "sql": "SELECT a.OPT_FS_CHECK_IN_DESK FROM DW_OPT_FLIGHT t LEFT JOIN DW_OPT_FLIGHT_CKDT a ON t.PID = a.PID AND t.OPT_FP_FLIN = a.OPT_FS_CTYP WHERE t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d') AND t.OPT_FP_FLTNO = 'CA3576'"
+  },
+  {
+    "原问题": "查询北京首都延误到达的航班信息",
+    "修饰问题": "我要查询2025年6月1日到达北京首都机场的所有延误航班",
+    "分类": "航班数据",
+    "sql": "SELECT * FROM DW_OPT_FLIGHT t WHERE t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d') AND t.OPT_FP_MVIN = 'A' AND t.OPT_FS_STATUS = '延误'"
+  },
+  {
+    "原问题": "统计当日国际航班数量",
+    "修饰问题": "请告诉我2025年6月1日当天一共有多少个国际航班",
+    "分类": "航班数据",
+    "sql": "SELECT COUNT(0) FROM DW_OPT_FLIGHT t WHERE t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d') AND t.OPT_FP_FLIN = 'I'"
+  },
+  {
+    "原问题": "查询当前航班的中转航班",
+    "修饰问题": "我想知道CA1262航班在2025年6月1日的中转航班信息",
+    "分类": "航班数据",
+    "sql": "SELECT * FROM DW_OPT_FLIGHT f WHERE f.OPT_FP_FLID = ( SELECT t.OPT_FP_TAID FROM DW_OPT_FLIGHT t WHERE t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d') AND t.OPT_FP_FLTNO = 'CA1262')"
+  },
+  {
+    "原问题": "统计计划起飞时间与实际起飞时间相差10分钟以内的航班数量",
+    "修饰问题": "请统计实际起飞时间与计划起飞时间相差小于10分钟的准点航班有多少个",
+    "分类": "航班数据",
+    "sql": "SELECT COUNT(*) FROM DW_OPT_FLIGHT t WHERE DATEDIFF(MINUTE, TO_DATE(t.OPT_FP_SOBT, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(t.OPT_FS_ATOT, 'YYYY-MM-DD HH24:MI:SS')) < 10;"
+  },
+  {
+    "原问题": "计算某一天内的所有航班的实际起飞时间减计划起飞时间的平均值",
+    "修饰问题": "请帮我计算2025年6月1日所有航班的平均起飞延误时间",
+    "分类": "航班数据",
+    "sql": "SELECT AVG(DATEDIFF(MINUTE, TO_DATE(t.OPT_FP_SOBT, 'YYYY-MM-DD HH24:MI:SS'), TO_DATE(t.OPT_FS_ATOT, 'YYYY-MM-DD HH24:MI:SS'))) AS avg_time_difference FROM DW_OPT_FLIGHT t WHERE t.OPT_FP_EXECUTE_DATE = DATE_FORMAT('2025-06-01', '%Y-%m-%d');"
+  },
+  {
+    "原问题": "查询所有白名单会员的基本信息",
+    "修饰问题": "请列出所有在白名单中的会员的姓名、手机号、邮箱和生日",
+    "分类": "会员商业数据",
+    "sql": "SELECT CRM_VIP_VIPCODE AS 会员号, CRM_VIP_SURNAME AS 姓名, CRM_VIP_DEFAULTMOBILE AS 手机号, CRM_VIP_VIPEMAILVARCHAR2 AS 邮箱, CRM_VIP_BIRTHDAY AS 生日 FROM DW_CRM_VIP WHERE CRM_VIP_ACTIVE = '1' AND DELETE_FLAG = 0;"
+  },
+  {
+    "原问题": "统计每位会员近一年的总消费金额和消费次数",
+    "修饰问题": "我想查看每位会员在最近一年内的消费总金额和消费次数统计",
+    "分类": "会员商业数据",
+    "sql": "SELECT s.CRM_SELL_VIPCODE AS 会员号, COUNT(*) AS 消费次数, SUM(CAST(s.CRM_SELL_NETAMOUNT AS DECIMAL(18,2))) AS 总消费金额 FROM DW_CRM_TRANSSALESTOTAL s WHERE s.DELETE_FLAG = 0 AND s.CRM_SELL_TXDATE >= '2024-09-03' GROUP BY s.CRM_SELL_VIPCODE;"
+  },
+  {
+    "原问题": "查询本月生日的白名单会员",
+    "修饰问题": "请帮我找出2月份过生日的所有白名单会员",
+    "分类": "会员商业数据",
+    "sql": "SELECT v.CRM_VIP_VIPCODE AS 会员号, v.CRM_VIP_SURNAME AS 姓名, v.CRM_VIP_DEFAULTMOBILE AS 手机号, v.CRM_VIP_BIRTHDAY AS 完整生日, v.CRM_VIP_CONSTELLATION AS 星座 FROM DW_CRM_VIP v WHERE v.CRM_VIP_ACTIVE = '1' AND v.DELETE_FLAG = 0 AND v.CRM_VIP_BIRTHDAYMM = '02';"
+  },
+  {
+    "原问题": "关联查询：会员基本信息 + 最近一次消费记录",
+    "修饰问题": "我想查看每个会员的基本信息以及他们最近一次的消费记录",
+    "分类": "会员商业数据",
+    "sql": "SELECT v.CRM_VIP_VIPCODE AS 会员号, v.CRM_VIP_SURNAME AS 姓名, v.CRM_VIP_SEX AS 性别, v.CRM_VIP_SHENG AS 省, v.CRM_VIP_SHI AS 市, s.CRM_SELL_TXDATETIME AS 最近消费时间, s.CRM_SELL_NETAMOUNT AS 最近消费金额, s.CRM_SELL_STOREID AS 消费店铺 FROM DW_CRM_VIP v LEFT JOIN ( SELECT CRM_SELL_VIPCODE, CRM_SELL_TXDATETIME, CRM_SELL_NETAMOUNT, CRM_SELL_STOREID, ROW_NUMBER() OVER (PARTITION BY CRM_SELL_VIPCODE ORDER BY CRM_SELL_TXDATETIME DESC) AS rn FROM DW_CRM_TRANSSALESTOTAL WHERE DELETE_FLAG = 0 ) s ON v.CRM_VIP_VIPCODE = s.CRM_SELL_VIPCODE AND s.rn = 1 WHERE v.DELETE_FLAG = 0;"
+  },
+  {
+    "原问题": "查询最近30天有消费记录的活跃会员数",
+    "修饰问题": "请统计过去30天内有过消费记录的活跃会员一共有多少位",
+    "分类": "会员商业数据",
+    "sql": "SELECT COUNT(DISTINCT CRM_SELL_VIPCODE) AS 活跃会员数 FROM DW_CRM_TRANSSALESTOTAL WHERE CRM_SELL_TXDATETIME >= TO_CHAR(CURRENT_DATE - 30, 'YYYY-MM-DD') AND DELETE_FLAG = 0;"
+  },
+  {
+    "原问题": "列出所有仍在营业的餐饮店铺及其所在区域",
+    "修饰问题": "我要查看所有正在营业的餐饮店铺的名称和所在区域",
+    "分类": "会员商业数据",
+    "sql": "SELECT b.BSN_RES_SHOPNAME AS 店铺名称, a.BSN_RES_AREANAME AS 所在区域, b.BSN_RES_TERMINALFLOOR AS 楼层 FROM DW_BSN_RES b LEFT JOIN DW_CATER_AREA a ON b.BSN_RES_AID = a.BSN_RES_AID WHERE b.BSN_RES_ACTIVE = '1' AND b.BSN_RES_BEOPEN = 1 AND b.DELETE_FLAG = 0 AND b.MALLID = 'CY';"
+  },
+  {
+    "原问题": "按店铺统计2025年总销售额",
+    "修饰问题": "请帮我统计2025年每个店铺的总销售额并按从高到低排序",
+    "分类": "会员商业数据",
+    "sql": "SELECT s.CRM_SELL_STOREID AS 店铺编号, b.BSN_RES_SHOPNAME AS 店铺名称, SUM(CAST(s.CRM_SELL_NETAMOUNT AS DECIMAL(18,2))) AS 总销售额 FROM DW_CRM_TRANSSALESTOTAL s JOIN DW_BSN_RES b ON s.CRM_SELL_STOREID = b.BSN_RES_SHOPCODE WHERE SUBSTR(s.CRM_SELL_TXDATE, 1, 4) = '2025' AND s.DELETE_FLAG = 0 AND b.BSN_RES_ACTIVE = '1' AND b.DELETE_FLAG = 0 GROUP BY s.CRM_SELL_STOREID, b.BSN_RES_SHOPNAME ORDER BY 总销售额 DESC;"
+  },
+  {
+    "原问题": "获取北京最新空气质量",
+    "修饰问题": "请告诉我北京最新的空气质量指数和PM2.5数值",
+    "分类": "天气数据",
+    "sql": "SELECT CITY, AQI, PM25, CO, TIME AS air_time FROM ( SELECT CITY, AQI, PM25, CO, TIME, ROW_NUMBER() OVER (ORDER BY UPDATED_TIME DESC) AS rn FROM DW_WEATHER_AIR WHERE CITY = '北京' AND DELETE_FLAG = '0' ) WHERE rn = 1;"
+  },
+  {
+    "原问题": "查询深圳当天的天气实况",
+    "修饰问题": "我想查询深圳今天的实际天气情况，包括温度、湿度和风向",
+    "分类": "天气数据",
+    "sql": "SELECT CITY, WX_CN AS weather, TEMP_C, RELHUM AS humidity, WND_CN AS wind_dir, DATE FROM DW_WEATHER_OBSERVE WHERE CITY = '深圳' AND DELETE_FLAG = '0' AND TRUNC(DATE) = TRUNC(SYSDATE);"
+  },
+  {
+    "原问题": "列出广东省所有正在生效的红色及以上级别预警",
+    "修饰问题": "请列出广东省当前所有正在生效的红色和橙色级别的天气预警信息",
+    "分类": "天气数据",
+    "sql": "SELECT CITY, ALARM_NAME, ALARM_LEVEL_NAME, START_TIME, END_TIME, CONTENT FROM DW_WEATHER_ALARM WHERE PROVINCE = '广东省' AND DELETE_FLAG = '0' AND ALARM_LEVEL_NAME IN ('红色', '橙色') AND SYSDATE BETWEEN TO_DATE(START_TIME, 'YYYY-MM-DD HH24:MI') AND TO_DATE(END_TIME, 'YYYY-MM-DD HH24:MI:SS');"
+  },
+  {
+    "原问题": "查询上海当天的天气预报与穿衣指数",
+    "修饰问题": "我想了解上海今天的天气预报以及穿衣建议",
+    "分类": "天气数据",
+    "sql": "SELECT f.CITY, f.DATE AS forecast_date, f.DAY_WX_CN AS day_weather, f.DHT AS max_temp, i.INDEX_LEVEL AS dressing_level, i.INDEX_EXPLANATION AS dressing_advice FROM DW_WEATHER_FORECAST f JOIN DW_WEATHER_INDEX i ON f.CITY = i.CITY AND f.DATE = i.DATE WHERE f.CITY = '上海' AND f.DELETE_FLAG = '0' AND i.DELETE_FLAG = '0' AND i.INDEX_CODE = '002' AND f.DATE = TO_CHAR(SYSDATE, 'YYYYMMDD');"
+  }
+]
